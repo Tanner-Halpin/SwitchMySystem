@@ -1,0 +1,1 @@
+Component Analysis & Swap Simulator intended for compiling a list of computer components, and swapping the components with different ones to test performance, and potential bottlenecks using various statistical methods.
