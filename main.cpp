@@ -2,7 +2,6 @@
 #include <vector>
 #include <fstream>
 #include <string>
-#include <unordered_map>
 
 using namespace std;
 
@@ -10,7 +9,6 @@ class Attributes
 {
 private:
 	string m_attribute, m_value;
-	unordered_map<string, string> map;
 
 public:
 	void setAttribute(string& attribute) { m_attribute = attribute; }
@@ -20,8 +18,6 @@ public:
 	{
 		Attributes a;
 		a.setAttribute(attribute), a.setvalue(value);
-
-		map[m_attribute] = m_value;
 
 		return a;
 	}
@@ -307,7 +303,7 @@ public:
 
 int main()
 {
-	cout << "Welcome to SwitchMySystem -- Component Analysis & Swap Simulation\n";
+	cout << "Welcome to SwitchMySystem -- The Computer Component Analysis\n";
 	cout << "When entering the name for a custom part, if the name is more then one word, separate the words by a hyphen: -\n\n";
 	Build b;
 	b.startMenu();
