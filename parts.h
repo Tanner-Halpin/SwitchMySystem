@@ -4,7 +4,7 @@
 
 struct Component
 {
-	string company, type, version, model;
+	string company="", type="", version="", model="";
 	vector<Attributes> attributes;
 };
 

@@ -28,4 +28,4 @@ public:
 	vector<Component*> loadAllParts();
 };
 
-#endif
+#endif // !BUILD_H

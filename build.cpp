@@ -58,43 +58,51 @@ void Build::loadParts()
 
 	if (!out)
 	{
-		cerr << "Error reading file\n";
-		loadParts();
+		cerr << "Error reading file\n\n";
+		startMenu();
 	}
 	else
 	{
-		Component* d = new Component;
+		Component* e = new Component;
 
-		cout << "Name your Computer: ";
+		cout << "Enter your name, or username: ";
 		cin >> name;
 		PC* list = new PC;
 		list->name = name;
-
+		
 		int count = 0;
+		int temp = 0;
+		if (componentList.size() > 1)
+		{
+			count = componentList.size();
+			temp = count;
+		}
+
 		cout << "\n" << endl;
 
-		while (out >> d->company >> d->type >> d->version >> d->model)
+		while (out >> e->company >> e->type >> e->version >> e->model)
 		{
-			componentList.push_back(d);
+			componentList.push_back(e);
 			cout << *componentList[count];
 			++count;
-			d = new Component;
+			e = new Component;
 		}
 
 		Component** compList[6] = { &list->CPU, &list->GPU, &list->SSD, &list->RAM, &list->Motherboard, &list->PSU };
 
 		for (int i = 0; i < size(compList); i++)
 		{
-			*compList[i] = componentList[i];
+			*compList[i] = componentList[temp];
+			++temp;
 		}
 
 		cout << "\n" << endl;
 		buildRoster.push_back(*list);
 
 		delete list;
-		delete d;
+		delete e;
 		list = nullptr;
-		d = nullptr;
+		e = nullptr;
 	}
 }
 
@@ -117,7 +125,7 @@ void Build::newPC()
 	{
 		PC* build = new PC;
 
-		cout << "\nEnter a name for your Custom PC: ";
+		cout << "\nEnter your name, or username: ";
 		getline(cin, m_name);
 		cout << m_name << "'s PC. \n";
 
@@ -146,7 +154,7 @@ Build Build::startMenu()
 	char option = 0;
 	while (true && option != 'q')
 	{
-		cout << "Pick an option: \na: Upload a list of PC Specifications\nb: Create a new PC with Parts\nc: Load the PC Build Roster\nd: Edit the component details\nq: End the program\n\nEnter your choice: ";
+		cout << "Pick an option: \na: Upload a list of PC Specifications\nb: Create a new PC with Parts\nc: Load the PC Build Roster\nd: Modify the component details\nq: End the program\n\nEnter your choice: ";
 		cin >> option;
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 

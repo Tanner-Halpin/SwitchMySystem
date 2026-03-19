@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <sstream>
 #include "parts.h"
 
 ostream& operator<<(ostream& out, Component& c)
@@ -23,10 +24,28 @@ Component* Parts::CreateItem()
 	vector<Component*> customPC;
 	Component* d = new Component;
 
-	cout << "\nComponent Entry Format: Company, Brand, Version, Model\nEnter the full name of the " << partsName[count] << " component below: ";
-	count++;
+	string name; // To be parsed into company, type, version and model
 
-	cin >> d->company >> d->type >> d->version >> d->model;
+	cout << "\nEnter the full name of the " << partsName[count] << " component below: ";
+	count++;
+	
+	getline(cin, name);
+	stringstream ss(name);
+	string word;
+	
+	string* attributesList[4]{ &d->company, &d->type, &d->version, &d->model };
+
+	int i = 0;
+	while (ss >> word)
+	{
+		*attributesList[i] = word;
+		i++;
+
+		if (i > 3)
+			break;
+	}
+	i = 0;
+
 	customPC.push_back(d);
 	componentList.push_back(d);
 
