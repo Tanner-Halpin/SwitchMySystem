@@ -1,0 +1,5 @@
+Documentation: March 19, 2026 
+
+Added a feature which will allow part names to be reduced to just the first four words, allowing a part name entry to be as long as needed. Each of the four words are separated into 4 different categories. They will be used for a search feature (coming soon), to narrow down parts by company, type, version and the exact model. This also clears any left over characters in the cin buffer, so it does not overlap when entering the next part. 
+
+A glitch was occuring where if you write and submit a custom PC list in the console, and then proceed to upload your own custom list, the uploaded contents would be overridden by the previous custom entry. This was resolved by adding a temp variable in build.cpp (line 74), which picks up where the 'componentList' array left off at, rather then starting at a value of i = 0 in the declared for loop, which would have overridden the new list by restarting at the beginning of the array, with the previously entered components from earlier.
